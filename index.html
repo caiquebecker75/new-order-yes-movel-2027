@@ -249,6 +249,35 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
   section.slide{padding:88px 24px 76px}
 }
 @media(max-width:560px){.g3,.g4,.g5,.g2{grid-template-columns:1fr}.plist{grid-template-columns:1fr}}
+
+/* download PDF button */
+.pdfbtn{display:inline-flex;align-items:center;gap:10px;margin-top:34px;font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.03em;color:var(--cream);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:40px;padding:13px 22px;cursor:pointer;transition:.4s var(--ease);backdrop-filter:blur(4px)}
+.pdfbtn:hover{background:var(--terra);border-color:var(--terra);color:#fff;transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(201,71,63,.7)}
+.pdfbtn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pdfbtn .dl{transition:transform .4s var(--ease)}
+.pdfbtn:hover .dl{transform:translateY(2px)}
+
+/* PRINT · save as PDF (one slide per page) */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto!important;overflow:visible!important;background:#161517!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .cursor,.progress,.nav,.counter,.hint,.topbar,.pdfbtn{display:none!important}
+  .deck{height:auto!important;overflow:visible!important;scroll-snap-type:none!important;display:block!important}
+  section.slide{height:auto!important;min-height:100vh;overflow:visible!important;break-after:page;page-break-after:always;scroll-snap-align:none;display:flex}
+  section.slide:last-child{break-after:auto;page-break-after:auto}
+  .slide::after{display:none!important}
+  [data-rise]{opacity:1!important;transform:none!important;transition:none!important}
+  .gfx .draw{stroke-dashoffset:0!important}
+  .gfx .pop,.gfx .fade{opacity:1!important;transform:none!important}
+  .card .rail{transform:scaleY(1)!important}
+  .render img,.imgbleed img{transform:none!important}
+  .constel .flow,.constel .halo,.constel .rrot,.constel .rrot2,.constel .hubcore,.orb,.spin-slow,.float{animation:none!important}
+  .curc{opacity:1!important;transform:none!important}
+  .curc .rail,.ptl-node.on .d,.ptl-node .d{transform:none!important}
+  .ptl-node .d{background:var(--terra)!important}
+  .ptl-fill{width:100%!important}
+}
 </style>
 </head>
 <body>
@@ -272,6 +301,7 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
     <div class="divider" style="max-width:520px" data-rise data-d="4"></div>
     <p class="lead" data-rise data-d="5" style="font-size:clamp(16px,1.6vw,23px)">Inspirados para criar ambientes que <span class="serif accent">aproximam, demonstram e vendem.</span></p>
     <div style="margin-top:34px;display:flex;gap:14px;align-items:center" data-rise data-d="6"><span class="kicker">Grupo New Order</span><span style="width:6px;height:6px;border-radius:50%;background:var(--terra)"></span><span class="kicker">Estratégia · Design · Produção</span></div>
+    <button class="pdfbtn" id="pdfBtn" data-rise data-d="6" aria-label="Baixar apresentação em PDF"><svg viewBox="0 0 24 24"><path class="dl" d="M12 3v12"/><path class="dl" d="M7 11l5 4 5-4"/><path d="M4 20h16"/></svg> Baixar em PDF</button>
   </div>
 </section>
 
@@ -875,6 +905,12 @@ window.addEventListener('keydown',(e)=>{if(['ArrowDown','ArrowRight',' ','PageDo
   });}
   const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>0.5)run();});},{root:document.getElementById('deck'),threshold:.5});
   io2.observe(box.closest('.slide'));
+})();
+
+/* download as PDF (browser print → salvar como PDF) */
+(function(){
+  const b=document.getElementById('pdfBtn');if(!b)return;
+  b.addEventListener('click',()=>{const t=b.textContent;b.textContent='Preparando…';setTimeout(()=>{window.print();b.innerHTML='<svg viewBox="0 0 24 24"><path class="dl" d="M12 3v12"/><path class="dl" d="M7 11l5 4 5-4"/><path d="M4 20h16"/></svg> Baixar em PDF';},120);});
 })();
 </script>
 </body>
