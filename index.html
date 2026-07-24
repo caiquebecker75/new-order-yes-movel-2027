@@ -191,6 +191,13 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
 .manifesto p+p{margin-top:8px}
 .manifesto .mmid{font-weight:300;font-size:clamp(15px,1.55vw,21px);line-height:1.55;opacity:.82;margin-top:22px;max-width:60ch}
 .manifesto .mclose{font-size:clamp(18px,2vw,29px);font-weight:400;margin-top:26px;line-height:1.28}
+.manifesto2{max-width:1180px}
+.manifesto2 .mlead{font-family:var(--sans);font-weight:400;font-size:clamp(23px,3.4vw,52px);line-height:1.07;letter-spacing:-.022em}
+.manifesto2 .mlead+.mlead{margin-top:2px}
+.mbody{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,60px);margin-top:clamp(22px,2.6vw,40px)}
+.manifesto2 .mmid2{font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.55vw,22px);line-height:1.6;opacity:.85;letter-spacing:0}
+.manifesto2 .mclose2{font-family:var(--sans);font-size:clamp(21px,2.6vw,42px);font-weight:500;margin-top:clamp(22px,2.6vw,38px);letter-spacing:-.018em;line-height:1.14}
+@media(max-width:880px){.mbody{grid-template-columns:1fr;gap:16px}}
 
 /* radial constellation (slide 05) */
 .constel{width:100%;height:auto;max-height:58vh;display:block;margin:8px auto 0;overflow:visible}
@@ -454,18 +461,19 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
   </div>
 </section>
 
-<!-- 06 CONCEITO + MANIFESTO -->
-<section class="slide ink" data-label="Conceito">
+<!-- 07 MANIFESTO -->
+<section class="slide ink" data-label="Manifesto">
   <div class="wrap">
-    <div class="headrow"><div class="eyebrow" data-rise>Conceito Criativo · Manifesto</div><span class="snum" data-rise>06</span></div>
-    <div class="stack" data-rise data-d="1" style="margin:6px 0 22px">
-      <span class="w fill">INSPIRADOS</span><span class="w fill">PARA CRIAR.</span><span class="w">AMBIENTES</span><span class="w">PARA VIVER.</span>
-    </div>
-    <div class="manifesto">
-      <p data-rise data-d="2">Antes de ser produto, é <span class="serif accent">possibilidade.</span></p>
-      <p data-rise data-d="3">Antes de ser estande, é <span class="serif accent">encontro.</span></p>
-      <p class="mmid" data-rise data-d="4">Criamos espaços que não se olham — se <span class="accent">sentem</span>. Onde a tecnologia ganha alma, o design vira gesto, e cada ambiente convida a imaginar a vida que cabe ali dentro.</p>
-      <p class="mclose" data-rise data-d="5">Duas marcas. Uma só inspiração.<br><span class="accent">Grupo New Order — inspirados para criar.</span></p>
+    <div class="headrow"><div class="eyebrow" data-rise>Manifesto</div><span class="snum" data-rise>07</span></div>
+    <div class="manifesto2">
+      <p class="mlead" data-rise data-d="1">Antes de ser produto, é <span class="serif accent">possibilidade.</span></p>
+      <p class="mlead" data-rise data-d="2">Antes de ser estande, é <span class="serif accent">encontro.</span></p>
+      <p class="mlead" data-rise data-d="3">Antes de vender, é fazer <span class="serif accent">sentir.</span></p>
+      <div class="mbody">
+        <p class="mmid2" data-rise data-d="4">Acreditamos que um ambiente bem construído faz mais do que expor: ele <span class="accent">acolhe, desperta e permanece na memória.</span> Que a tecnologia só encontra sentido quando toca a vida das pessoas — quando um cooktop vira jantar em família, quando uma bancada vira conversa, quando o espaço deixa de ser cenário e passa a ser convite.</p>
+        <p class="mmid2" data-rise data-d="5">Por isso não desenhamos paredes: desenhamos <span class="accent">experiências.</span> Não alinhamos produtos: criamos <span class="accent">contextos.</span> Onde a inovação ganha calor humano, o design vira gesto e cada detalhe convida a imaginar a vida que cabe ali dentro. Duas marcas preservam sua essência e, juntas, revelam a força de um grupo pronto para o futuro.</p>
+      </div>
+      <p class="mclose2" data-rise data-d="6">Duas marcas, uma só inspiração.<br><span class="accent">Inspirados para criar. Ambientes para viver.</span></p>
     </div>
   </div>
 </section>
