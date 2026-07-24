@@ -185,7 +185,63 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
 .imgbleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,21,.5) 0%,rgba(20,19,21,.05) 26%,rgba(20,19,21,.1) 55%,rgba(20,19,21,.9) 100%)}
 .suspense-word{overflow:hidden;display:inline-block}
 
+/* manifesto (slide 06) */
+.manifesto{max-width:62ch}
+.manifesto p{font-family:var(--sans);font-weight:400;font-size:clamp(20px,2.5vw,38px);line-height:1.2;letter-spacing:-.018em}
+.manifesto p+p{margin-top:8px}
+.manifesto .mmid{font-weight:300;font-size:clamp(15px,1.55vw,21px);line-height:1.55;opacity:.82;margin-top:22px;max-width:60ch}
+.manifesto .mclose{font-size:clamp(18px,2vw,29px);font-weight:400;margin-top:26px;line-height:1.28}
+
+/* radial constellation (slide 05) */
+.constel{width:100%;height:auto;max-height:58vh;display:block;margin:8px auto 0;overflow:visible}
+@keyframes cflow{to{stroke-dashoffset:-26}}
+@keyframes chalo{0%,100%{opacity:.08;transform:scale(1)}50%{opacity:.42;transform:scale(1.65)}}
+@keyframes chub{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes crot{to{transform:rotate(360deg)}}
+@keyframes crotr{to{transform:rotate(-360deg)}}
+.constel .flow{stroke-dasharray:5 19;animation:cflow 1.5s linear infinite}
+.constel .halo{transform-box:fill-box;transform-origin:center;animation:chalo 3s ease-in-out infinite}
+.constel .rrot{transform-box:fill-box;transform-origin:center;animation:crot 48s linear infinite}
+.constel .rrot2{transform-box:fill-box;transform-origin:center;animation:crotr 66s linear infinite}
+.constel .hubcore{transform-box:fill-box;transform-origin:center;animation:chub 3.4s ease-in-out infinite}
+.constel .sat{cursor:pointer}
+.constel .sat .ncore{transition:transform .4s var(--ease);transform-box:fill-box;transform-origin:center}
+.constel .sat:hover .ncore{transform:scale(1.16)}
+
+/* interactive timeline (slide 19 · Curadoria) */
+.ptl{position:relative;height:108px}
+.ptl-track{position:absolute;left:8%;right:8%;top:72px;height:3px;background:var(--line-dk);border-radius:3px}
+.ptl-fill{position:absolute;left:0;top:0;height:100%;width:0;background:var(--terra);border-radius:3px;transition:width .7s var(--ease);box-shadow:0 0 12px rgba(201,71,63,.5)}
+.ptl-node{position:absolute;top:72px;transform:translateX(-50%);background:none;border:0;padding:0;cursor:pointer}
+.ptl-node .d{display:block;width:16px;height:16px;border-radius:50%;background:#c9c4bb;margin-top:-8px;transition:.4s var(--ease);position:relative;z-index:2}
+.ptl-node .lbl{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--sans);font-weight:500;font-size:clamp(15px,1.5vw,22px);color:var(--warm);transition:.35s var(--ease)}
+.ptl-node:hover .lbl{color:var(--graphite)}
+.ptl-node.on .d{background:var(--terra);transform:scale(1.7);box-shadow:0 0 0 7px rgba(201,71,63,.16)}
+.ptl-node.on .lbl{color:var(--terra);transform:translateX(-50%) translateY(-3px)}
+.curc{cursor:pointer;opacity:.6;transition:opacity .5s var(--ease),transform .5s var(--ease),border-color .5s,box-shadow .5s}
+.curc.on{opacity:1;border-color:var(--terra);transform:translateY(-7px);box-shadow:0 26px 52px -30px rgba(0,0,0,.42)}
+.slide.active .curc .rail{transform:scaleY(0)}
+.curc.on .rail{transform:scaleY(1)}
+
+/* custom ball cursor */
+.cursor{position:fixed;top:0;left:0;width:16px;height:16px;border-radius:50%;border:1.6px solid var(--terra);background:rgba(201,71,63,.16);pointer-events:none;z-index:300;opacity:0;transition:width .28s var(--ease),height .28s var(--ease),background .28s,border-color .28s,opacity .3s;will-change:transform;mix-blend-mode:normal}
+.cursor .cd{position:absolute;top:50%;left:50%;width:5px;height:5px;border-radius:50%;background:var(--terra);transform:translate(-50%,-50%);transition:opacity .25s}
+.cursor.react{width:52px;height:52px;background:rgba(201,71,63,.14);border-color:var(--terra-soft)}
+.cursor.react .cd{opacity:0}
+.cursor.press{transform-box:fill-box}
+@media(pointer:coarse){.cursor{display:none!important}}
+@media(pointer:fine){html,html *{cursor:none!important}}
+
+/* stats row (75 LAB intro) */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,32px)}
+.stat{border-left:2px solid var(--terra);padding-left:clamp(14px,1.2vw,20px)}
+.statn{font-family:var(--sans);font-weight:600;font-size:clamp(32px,4.4vw,66px);line-height:.98;letter-spacing:-.025em;color:var(--cream)}
+.slide.light .statn,.slide.mineral .statn{color:var(--graphite)}
+.statl{font-family:var(--sans);font-size:clamp(11px,1vw,14px);letter-spacing:.04em;color:var(--warm-2);margin-top:12px;font-weight:400}
+.slide.light .statl,.slide.mineral .statl{color:var(--warm)}
+
 @media(max-width:880px){
+  .stats{grid-template-columns:repeat(2,1fr);gap:26px}
   .two,.two.rev{grid-template-columns:1fr}
   .g3,.g4,.g5{grid-template-columns:1fr 1fr}
   .plist{grid-template-columns:1fr 1fr}.plist::before{display:none}
@@ -196,6 +252,7 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
 </style>
 </head>
 <body>
+<div class="cursor" id="cur"><span class="cd"></span></div>
 <div class="progress" id="prog"></div>
 <div class="topbar"><div class="brand">75<span>LAB</span></div><div class="meta">Grupo New Order · YES Móvel Show 2027</div></div>
 <nav class="nav" id="nav"></nav>
@@ -215,6 +272,22 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
     <div class="divider" style="max-width:520px" data-rise data-d="4"></div>
     <p class="lead" data-rise data-d="5" style="font-size:clamp(16px,1.6vw,23px)">Inspirados para criar ambientes que <span class="serif accent">aproximam, demonstram e vendem.</span></p>
     <div style="margin-top:34px;display:flex;gap:14px;align-items:center" data-rise data-d="6"><span class="kicker">Grupo New Order</span><span style="width:6px;height:6px;border-radius:50%;background:var(--terra)"></span><span class="kicker">Estratégia · Design · Produção</span></div>
+  </div>
+</section>
+
+<!-- 01B QUEM É A 75 LAB -->
+<section class="slide dark" data-label="75 LAB">
+  <div class="wrap">
+    <div class="headrow"><div class="eyebrow" data-rise>Quem faz acontecer</div><span class="snum" data-rise>02</span></div>
+    <h2 class="title" data-rise data-d="1" style="max-width:22ch">A <span class="accent">75 LAB</span> é uma aceleradora de <span class="serif accent">Trade Marketing.</span></h2>
+    <p class="lead" data-rise data-d="2" style="margin-top:16px">Conectamos soluções para transformar intenção comercial em resultado no ponto de venda. Não somos uma agência tradicional — somos um hub que entrega <span class="accent">soluções com intenção, não peças bonitas.</span> <span class="serif accent">Ideia boa é a que acontece.</span></p>
+    <div class="stats" data-rise data-d="3" style="margin-top:clamp(30px,4vw,58px)">
+      <div class="stat"><div class="statn" data-to="15" data-pre="+">+15</div><div class="statl">anos no trade</div></div>
+      <div class="stat"><div class="statn" data-to="15000" data-suf="+">15.000+</div><div class="statl">PDVs positivados</div></div>
+      <div class="stat"><div class="statn" data-to="95" data-suf="%">95%</div><div class="statl">projetos aprovados</div></div>
+      <div class="stat"><div class="statn" data-to="84">84</div><div class="statl">cases no portfólio</div></div>
+    </div>
+    <div class="chips" data-rise data-d="4" style="margin-top:clamp(24px,3vw,42px)"><span class="chip solid">Stands</span><span class="chip">Eventos</span><span class="chip">Material de PDV</span><span class="chip">Incentivo</span><span class="chip">Promoção</span><span class="chip">Retail media</span><span class="chip">Promotoria</span></div>
   </div>
 </section>
 
@@ -307,40 +380,45 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
 
 <!-- 05 CRITÉRIOS (radial chart) -->
 <section class="slide dark" data-label="Critérios">
-  <div class="wrap two">
-    <div>
-      <div class="eyebrow" data-rise>Critérios de Sucesso</div>
-      <h2 class="title" data-rise data-d="1" style="font-size:clamp(26px,3.4vw,50px)">O projeto precisa gerar valor em <span class="serif accent">cinco frentes conectadas.</span></h2>
-      <div class="legend" data-rise data-d="3" style="margin-top:24px;flex-direction:column;gap:12px">
-        <span><i style="background:var(--terra)"></i><b style="font-family:var(--sans);font-weight:500;margin-right:6px">01 Posicionamento</b> — design e tecnologia percebidos de imediato.</span>
-        <span><i style="background:var(--terra)"></i><b style="font-family:var(--sans);font-weight:500;margin-right:6px">02 Portfólio</b> — produtos com protagonismo em contexto real.</span>
-        <span><i style="background:var(--terra)"></i><b style="font-family:var(--sans);font-weight:500;margin-right:6px">03 Experiência</b> — entrar, tocar, experimentar, permanecer.</span>
-        <span><i style="background:var(--terra)"></i><b style="font-family:var(--sans);font-weight:500;margin-right:6px">04 Relacionamento</b> — marca e lojistas mais próximos.</span>
-        <span><i style="background:var(--terra)"></i><b style="font-family:var(--sans);font-weight:500;margin-right:6px">05 Legado</b> — base modular para PDV e futuros eventos.</span>
-      </div>
-    </div>
+  <div class="wrap">
+    <div class="headrow"><div class="eyebrow" data-rise>Critérios de Sucesso</div><span class="snum" data-rise>05</span></div>
+    <h2 class="title" data-rise data-d="1" style="max-width:24ch">O projeto precisa gerar valor em <span class="serif accent">cinco frentes conectadas.</span></h2>
     <div data-rise data-d="2">
-      <svg class="gfx" viewBox="0 0 460 460" role="img" aria-label="Diagrama radial das cinco frentes">
-        <circle cx="230" cy="230" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
-        <circle cx="230" cy="230" r="95" fill="none" stroke="var(--line)" stroke-width="1"/>
-        <!-- spokes + nodes at 5 positions (angles -90,-18,54,126,198) -->
-        <g stroke="var(--terra)" stroke-width="2">
-          <line class="draw" style="--len:150" x1="230" y1="230" x2="230" y2="80"/>
-          <line class="draw d2" style="--len:150" x1="230" y1="230" x2="372.6" y2="183.7"/>
-          <line class="draw d2" style="--len:150" x1="230" y1="230" x2="318.1" y2="351.3"/>
-          <line class="draw d3" style="--len:150" x1="230" y1="230" x2="141.9" y2="351.3"/>
-          <line class="draw d3" style="--len:150" x1="230" y1="230" x2="87.4" y2="183.7"/>
+      <svg class="gfx constel" viewBox="0 0 1120 610" role="img" aria-label="Cinco frentes conectadas ao valor">
+        <circle cx="560" cy="310" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="560" cy="310" r="95" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <circle class="rrot2" cx="560" cy="310" r="212" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 13"/>
+        <g fill="none">
+          <line x1="560" y1="310" x2="560" y2="60" stroke="var(--terra)" stroke-width="1.5" opacity=".28"/>
+          <line x1="560" y1="310" x2="797.8" y2="232.7" stroke="var(--terra)" stroke-width="1.5" opacity=".28"/>
+          <line x1="560" y1="310" x2="706.9" y2="512.3" stroke="var(--terra)" stroke-width="1.5" opacity=".28"/>
+          <line x1="560" y1="310" x2="413.1" y2="512.3" stroke="var(--terra)" stroke-width="1.5" opacity=".28"/>
+          <line x1="560" y1="310" x2="322.2" y2="232.7" stroke="var(--terra)" stroke-width="1.5" opacity=".28"/>
+          <line class="flow" x1="560" y1="310" x2="560" y2="60" stroke="var(--terra)" stroke-width="2.6" style="animation-delay:0s"/>
+          <line class="flow" x1="560" y1="310" x2="797.8" y2="232.7" stroke="var(--terra)" stroke-width="2.6" style="animation-delay:.3s"/>
+          <line class="flow" x1="560" y1="310" x2="706.9" y2="512.3" stroke="var(--terra)" stroke-width="2.6" style="animation-delay:.6s"/>
+          <line class="flow" x1="560" y1="310" x2="413.1" y2="512.3" stroke="var(--terra)" stroke-width="2.6" style="animation-delay:.9s"/>
+          <line class="flow" x1="560" y1="310" x2="322.2" y2="232.7" stroke="var(--terra)" stroke-width="2.6" style="animation-delay:1.2s"/>
         </g>
-        <circle class="pop" cx="230" cy="230" r="52" fill="var(--terra)"/>
-        <text class="gtxt n" x="230" y="226" text-anchor="middle" font-size="16" fill="#fff">VALOR</text>
-        <text class="gtxt s" x="230" y="246" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.85)">5 frentes</text>
-        <g fill="var(--graphite)">
-          <g class="pop p2"><circle cx="230" cy="80" r="26" fill="var(--cream)"/><text class="gtxt n" x="230" y="86" text-anchor="middle" font-size="16" fill="var(--terra)">01</text></g>
-          <g class="pop p2"><circle cx="372.6" cy="183.7" r="26" fill="var(--cream)"/><text class="gtxt n" x="372.6" y="189.7" text-anchor="middle" font-size="16" fill="var(--terra)">02</text></g>
-          <g class="pop p3"><circle cx="318.1" cy="351.3" r="26" fill="var(--cream)"/><text class="gtxt n" x="318.1" y="357.3" text-anchor="middle" font-size="16" fill="var(--terra)">03</text></g>
-          <g class="pop p3"><circle cx="141.9" cy="351.3" r="26" fill="var(--cream)"/><text class="gtxt n" x="141.9" y="357.3" text-anchor="middle" font-size="16" fill="var(--terra)">04</text></g>
-          <g class="pop p4"><circle cx="87.4" cy="183.7" r="26" fill="var(--cream)"/><text class="gtxt n" x="87.4" y="189.7" text-anchor="middle" font-size="16" fill="var(--terra)">05</text></g>
-        </g>
+        <circle class="halo" cx="560" cy="160" r="27" fill="var(--terra)" style="animation-delay:0s"/>
+        <circle class="halo" cx="702.7" cy="263.6" r="27" fill="var(--terra)" style="animation-delay:.6s"/>
+        <circle class="halo" cx="648.2" cy="431.4" r="27" fill="var(--terra)" style="animation-delay:1.2s"/>
+        <circle class="halo" cx="471.8" cy="431.4" r="27" fill="var(--terra)" style="animation-delay:1.8s"/>
+        <circle class="halo" cx="417.3" cy="263.6" r="27" fill="var(--terra)" style="animation-delay:2.4s"/>
+        <circle class="rrot" cx="560" cy="310" r="74" fill="none" stroke="var(--terra)" stroke-width="1.2" stroke-dasharray="3 10" opacity=".55"/>
+        <circle class="hubcore" cx="560" cy="310" r="54" fill="var(--terra)"/>
+        <text class="gtxt n" x="560" y="306" text-anchor="middle" font-size="18" fill="#fff">VALOR</text>
+        <text class="gtxt s" x="560" y="326" text-anchor="middle" font-size="11.5" fill="rgba(255,255,255,.85)">5 frentes</text>
+        <g class="sat"><circle class="ncore" cx="560" cy="160" r="27" fill="var(--cream)"/><text class="gtxt n" x="560" y="166" text-anchor="middle" font-size="17" fill="var(--terra)">01</text>
+          <text class="gtxt n" x="560" y="36" text-anchor="middle" font-size="17" fill="var(--cream)">Posicionamento</text><text class="gtxt s" x="560" y="55" text-anchor="middle" font-size="12.5" fill="var(--warm-2)">percebido de imediato</text></g>
+        <g class="sat"><circle class="ncore" cx="702.7" cy="263.6" r="27" fill="var(--cream)"/><text class="gtxt n" x="702.7" y="269.6" text-anchor="middle" font-size="17" fill="var(--terra)">02</text>
+          <text class="gtxt n" x="742" y="257" font-size="17" fill="var(--cream)">Portfólio</text><text class="gtxt s" x="742" y="276" font-size="12.5" fill="var(--warm-2)">protagonismo em contexto</text></g>
+        <g class="sat"><circle class="ncore" cx="648.2" cy="431.4" r="27" fill="var(--cream)"/><text class="gtxt n" x="648.2" y="437.4" text-anchor="middle" font-size="17" fill="var(--terra)">03</text>
+          <text class="gtxt n" x="688" y="425" font-size="17" fill="var(--cream)">Experiência</text><text class="gtxt s" x="688" y="444" font-size="12.5" fill="var(--warm-2)">tocar e experimentar</text></g>
+        <g class="sat"><circle class="ncore" cx="471.8" cy="431.4" r="27" fill="var(--cream)"/><text class="gtxt n" x="471.8" y="437.4" text-anchor="middle" font-size="17" fill="var(--terra)">04</text>
+          <text class="gtxt n" x="432" y="425" text-anchor="end" font-size="17" fill="var(--cream)">Relacionamento</text><text class="gtxt s" x="432" y="444" text-anchor="end" font-size="12.5" fill="var(--warm-2)">marca + lojistas</text></g>
+        <g class="sat"><circle class="ncore" cx="417.3" cy="263.6" r="27" fill="var(--cream)"/><text class="gtxt n" x="417.3" y="269.6" text-anchor="middle" font-size="17" fill="var(--terra)">05</text>
+          <text class="gtxt n" x="378" y="257" text-anchor="end" font-size="17" fill="var(--cream)">Legado</text><text class="gtxt s" x="378" y="276" text-anchor="end" font-size="12.5" fill="var(--warm-2)">base modular · PDV e eventos</text></g>
       </svg>
     </div>
   </div>
@@ -353,11 +431,12 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
     <div class="stack" data-rise data-d="1" style="margin:6px 0 22px">
       <span class="w fill">INSPIRADOS</span><span class="w fill">PARA CRIAR.</span><span class="w">AMBIENTES</span><span class="w">PARA VIVER.</span>
     </div>
-    <div class="two" style="align-items:start">
-      <p class="lead" data-rise data-d="2">A tecnologia <span class="accent">transforma</span>, o design <span class="accent">aproxima</span> e a inspiração faz <span class="serif accent">imaginar.</span> Cada produto deixa de ser peça isolada e passa a compor uma possibilidade de vida.</p>
-      <p class="lead" data-rise data-d="3">Cozinhas não são cenários: são convites. Produtos não ficam em fila: ganham contexto. Duas marcas preservam suas identidades e, juntas, revelam a força de um grupo preparado para o futuro.</p>
+    <div class="manifesto">
+      <p data-rise data-d="2">Antes de ser produto, é <span class="serif accent">possibilidade.</span></p>
+      <p data-rise data-d="3">Antes de ser estande, é <span class="serif accent">encontro.</span></p>
+      <p class="mmid" data-rise data-d="4">Criamos espaços que não se olham — se <span class="accent">sentem</span>. Onde a tecnologia ganha alma, o design vira gesto, e cada ambiente convida a imaginar a vida que cabe ali dentro.</p>
+      <p class="mclose" data-rise data-d="5">Duas marcas. Uma só inspiração.<br><span class="accent">Grupo New Order — inspirados para criar.</span></p>
     </div>
-    <div class="chips" data-rise data-d="4" style="margin-top:26px"><span class="chip solid">Criar</span><span class="chip">Ver</span><span class="chip">Tocar</span><span class="chip">Experimentar</span><span class="chip">Permanecer</span></div>
   </div>
 </section>
 
@@ -593,21 +672,18 @@ h2.title{font-family:var(--sans);font-weight:500;line-height:1.02;letter-spacing
   <div class="wrap">
     <div class="headrow"><div class="eyebrow" data-rise>Curadoria de Portfólio</div><span class="snum" data-rise style="color:var(--warm)">16</span></div>
     <h2 class="title" data-rise data-d="1" style="max-width:20ch">Não agrupamos categorias. <span class="serif accent">Criamos cenas de uso.</span></h2>
-    <div data-rise data-d="2" style="margin-top:clamp(22px,3vw,38px)">
-      <svg class="gfx" viewBox="0 0 1100 120" role="img" aria-label="Fluxo cozinhar preparar viver">
-        <defs><marker id="ah4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--terra)"/></marker></defs>
-        <line class="draw" style="--len:900" x1="130" y1="82" x2="970" y2="82" stroke="var(--terra)" stroke-width="2" marker-end="url(#ah4)"/>
-        <g class="pop"><text class="gtxt n" x="130" y="44" text-anchor="middle" font-size="22" fill="var(--graphite)">Cozinhar</text><circle cx="130" cy="82" r="10" fill="var(--terra)"/></g>
-        <g class="pop p2"><text class="gtxt n" x="550" y="44" text-anchor="middle" font-size="22" fill="var(--graphite)">Preparar</text><circle cx="550" cy="82" r="10" fill="var(--terra)"/></g>
-        <g class="pop p3"><text class="gtxt n" x="970" y="44" text-anchor="middle" font-size="22" fill="var(--terra)">Viver</text><circle cx="970" cy="82" r="10" fill="var(--terra)"/></g>
-      </svg>
+    <div class="ptl" id="curTL" data-rise data-d="2" style="margin-top:clamp(28px,3.6vw,50px)">
+      <div class="ptl-track"><div class="ptl-fill" id="curFill"></div></div>
+      <button class="ptl-node" data-s="0" style="left:8%"><span class="lbl">Cozinhar</span><span class="d"></span></button>
+      <button class="ptl-node" data-s="1" style="left:50%"><span class="lbl">Preparar</span><span class="d"></span></button>
+      <button class="ptl-node" data-s="2" style="left:92%"><span class="lbl">Viver</span><span class="d"></span></button>
     </div>
-    <div class="grid g3" data-rise data-d="3" style="margin-top:24px">
-      <div class="card"><span class="rail"></span><span class="num">01 · Cozinhar</span><p style="margin-top:10px">Cooktops, fornos e coifas se complementam em composições que facilitam comparação e especificação.</p></div>
-      <div class="card"><span class="rail"></span><span class="num">02 · Preparar</span><p style="margin-top:10px">Bancadas funcionais demonstram performance e criam oportunidades de conteúdo e degustação.</p></div>
-      <div class="card"><span class="rail"></span><span class="num">03 · Viver</span><p style="margin-top:10px">Mesas, iluminação e acabamentos ampliam o repertório do lojista e aproximam o consumidor.</p></div>
+    <div class="grid g3" id="curCards" data-rise data-d="3" style="margin-top:8px">
+      <div class="card curc" data-s="0"><span class="rail"></span><span class="num">01 · Cozinhar</span><p style="margin-top:10px">Cooktops, fornos e coifas se complementam em composições que facilitam comparação e especificação.</p></div>
+      <div class="card curc" data-s="1"><span class="rail"></span><span class="num">02 · Preparar</span><p style="margin-top:10px">Bancadas funcionais demonstram performance e criam oportunidades de conteúdo e degustação.</p></div>
+      <div class="card curc" data-s="2"><span class="rail"></span><span class="num">03 · Viver</span><p style="margin-top:10px">Mesas, iluminação e acabamentos ampliam o repertório do lojista e aproximam o consumidor.</p></div>
     </div>
-    <div class="foot" data-rise data-d="4" style="margin-top:24px">Produto com <span class="accent">protagonismo.</span> Ambiente com <span class="accent">propósito.</span></div>
+    <div class="foot" data-rise data-d="4" style="margin-top:22px">Produto com <span class="accent">protagonismo.</span> Ambiente com <span class="accent">propósito.</span> <span style="opacity:.5;font-size:.82em">· passe o mouse ou toque nas etapas</span></div>
   </div>
 </section>
 
@@ -757,6 +833,49 @@ const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting&&e.i
 slides.forEach(s=>io.observe(s));slides[0].classList.add('active');dots[0].classList.add('on');
 deck.addEventListener('scroll',()=>{prog.style.width=(deck.scrollTop/(deck.scrollHeight-deck.clientHeight)*100)+'%';},{passive:true});
 window.addEventListener('keydown',(e)=>{if(['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();if(current<slides.length-1)slides[current+1].scrollIntoView({behavior:'smooth'});}if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();if(current>0)slides[current-1].scrollIntoView({behavior:'smooth'});}if(e.key==='Home')slides[0].scrollIntoView({behavior:'smooth'});if(e.key==='End')slides[slides.length-1].scrollIntoView({behavior:'smooth'});});
+
+/* ball cursor with hover reactions */
+(function(){
+  if(matchMedia('(pointer:coarse)').matches)return;
+  const cur=document.getElementById('cur');if(!cur)return;
+  let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,seen=false;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(!seen){seen=true;cx=mx;cy=my;}cur.style.opacity='1';},{passive:true});
+  addEventListener('mouseout',e=>{if(!e.relatedTarget)cur.style.opacity='0';});
+  addEventListener('mousedown',()=>cur.classList.add('press'));
+  addEventListener('mouseup',()=>cur.classList.remove('press'));
+  const sel='a,button,.card,.curc,.chip,.ptile,.ptl-node,.sat,.stack .w,.render,.sw,.nav button';
+  addEventListener('mouseover',e=>{if(e.target.closest&&e.target.closest(sel))cur.classList.add('react');},true);
+  addEventListener('mouseout',e=>{if(e.target.closest&&e.target.closest(sel))cur.classList.remove('react');},true);
+  (function loop(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);})();
+})();
+
+/* interactive timeline · Curadoria (slide 19) */
+(function(){
+  const tl=document.getElementById('curTL');if(!tl)return;
+  const fill=document.getElementById('curFill');
+  const nodes=[...tl.querySelectorAll('.ptl-node')];
+  const cards=[...document.querySelectorAll('#curCards .curc')];
+  const slide=tl.closest('.slide'),wrap=tl.closest('.wrap');
+  let i=0,paused=false;
+  function set(n){i=n;fill.style.width=(n*50)+'%';nodes.forEach((x,j)=>x.classList.toggle('on',j===n));cards.forEach((x,j)=>x.classList.toggle('on',j===n));}
+  setInterval(()=>{if(!paused&&slide.classList.contains('active'))set((i+1)%3);},2400);
+  function pick(n){paused=true;set(n);}
+  nodes.forEach((x,n)=>{x.addEventListener('mouseenter',()=>pick(n));x.addEventListener('click',()=>pick(n));});
+  cards.forEach((x,n)=>{x.addEventListener('mouseenter',()=>pick(n));x.addEventListener('click',()=>pick(n));});
+  wrap.addEventListener('mouseleave',()=>{paused=false;});
+  set(0);
+})();
+
+/* count-up stats (75 LAB intro) */
+(function(){
+  const box=document.querySelector('.stats');if(!box)return;
+  const nums=[...box.querySelectorAll('.statn')];let done=false;
+  function run(){if(done)return;done=true;nums.forEach(el=>{const to=+el.dataset.to,suf=el.dataset.suf||'',pre=el.dataset.pre||'';let t0=null;const dur=1500;
+    requestAnimationFrame(function step(ts){if(!t0)t0=ts;const p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,3),v=Math.round(to*e);el.textContent=pre+v.toLocaleString('pt-BR')+suf;if(p<1)requestAnimationFrame(step);});
+  });}
+  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>0.5)run();});},{root:document.getElementById('deck'),threshold:.5});
+  io2.observe(box.closest('.slide'));
+})();
 </script>
 </body>
 </html>
