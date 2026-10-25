@@ -1,0 +1,13 @@
+node_modules/
+.venv/
+__pycache__/
+graficos/
+# Sessoes logadas no WhatsApp (credenciais) nunca devem ir para o Git
+.wwebjs_auth/
+.wwebjs_cache/
+auth_info*/
+tokens/
+_IGNORE_*/
+*.data.json
+*.db
+*.sqlite
