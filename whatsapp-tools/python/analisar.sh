@@ -8,7 +8,7 @@ if [ $# -lt 2 ]; then
   exit 1
 fi
 
-here="$(cd "$(dirname "$0")" && pwd)"
+here="$(dirname "$(readlink -f "$0")")"
 source_file="$(realpath "$1")"
 chat_name="$2"
 out_dir="$(realpath -m "${3:-graficos}")"

@@ -3,6 +3,20 @@
 Bibliotecas e ferramentas de código aberto para WhatsApp, instaladas a partir
 dos registros oficiais (npm, Go proxy e PyPI), com versões fixadas.
 
+## Instalar na plataforma de agentes (Claude Code na nuvem)
+
+Cole o conteúdo de [`setup-ambiente.sh`](setup-ambiente.sh) no **Setup script**
+do ambiente (menu do ambiente na barra de título da sessão → *Edit*). Ele roda
+no início de cada nova sessão, instala tudo em `/opt/whatsapp-tools` sem
+depender deste repositório e deixa disponíveis os comandos `whatsapp-verificar`,
+`wtsexporter`, `whatsapp-analisar` e `whatsapp-chat-analyze`, além de
+`require('whatsapp-web.js')` (e das outras libs Node) em qualquer pasta.
+
+O script traz cópias de `node/check.js`, `go/main.go`, `python/converter_br.py`
+e `python/analisar.sh`: ao mudar um desses arquivos, atualize o script também.
+
+## Instalar nesta pasta
+
 ```bash
 ./whatsapp-tools/setup.sh   # instala tudo e roda a verificação
 ```
