@@ -1,0 +1,5 @@
+# Exporta conversas de backups do WhatsApp (Android/iOS) para HTML/JSON,
+# incluindo descriptografia de .crypt12/.crypt14/.crypt15
+whatsapp-chat-exporter[all]==0.13.1
+# Gera graficos interativos a partir de conversas exportadas (.txt/.zip)
+whatsapp-chat-analyze==0.1.7
